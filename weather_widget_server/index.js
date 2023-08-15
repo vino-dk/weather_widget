@@ -9,13 +9,13 @@ app.get("/", (req, res) => {
 })
 
 app.get('/weather', cors(), async (req, res) => {
-    console.log("requesting weather");
     const city = req.query.city || 'Copenhagen';
     try{
         const weather = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city},dk&appid=${API_KEY}`);
         res.send(weather.data);        
     } catch(err) {
-        res.send("Could not fetch weather data", err);
+        console.error('Error', err)
+        res.status(500).res.send("Could not fetch weather data", err);
     }
 })
 
