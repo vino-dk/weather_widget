@@ -1,11 +1,11 @@
 import './App.css'
-import WeatherModule from './WeatherModule'
+import WeatherWidget from './WeatherWidget'
 
 function App() {
   return (
     <>
       <h1>Weather Widget!</h1>
-      <WeatherModule />
+      <WeatherWidget />
     </>
   )
 }

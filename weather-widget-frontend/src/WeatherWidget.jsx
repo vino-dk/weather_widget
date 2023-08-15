@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
-import './WeatherModule.css'
+import SearchBar from "./SeachBar";
+import './WeatherWidget.css'
 
-export default function WeatherModule() {
+export default function WeatherWidget() {
 
     const [weatherData, setWeatherData] = useState({ city: "", temp: "", hum: "", wind: "" });
 
@@ -22,11 +23,14 @@ export default function WeatherModule() {
     }, [])
 
     return (
-        <div className="WeatherModule">
+        <div className="WeatherWidget">
             <p>Weather in {weatherData.city}</p>
             <p>Temperature: {weatherData.temp}</p>
             <p>Humidity: {weatherData.hum}</p>
             <p>Wind: {weatherData.wind}</p>
+            <SearchBar
+                searchPlaceHolder={"cityname"}
+                getSearchTerm={getCityWeather} />
         </div>
     )
 }
