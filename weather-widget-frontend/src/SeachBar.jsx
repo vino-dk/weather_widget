@@ -1,14 +1,18 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom"
 
 export default function SearchBar({ searchPlaceHolder, getSearchTerm }) {
+    const navigate = useNavigate();
     const [searchTerm, setSearchTerm] = useState("");
-    
+
     const handleChange = (evt) => {
         setSearchTerm(evt.target.value)
+        
     }
 
     const handleSubmit = () => {
         getSearchTerm(searchTerm);
+        navigate(`/weather?city=${searchTerm}`);
         setSearchTerm("");
     }
 
