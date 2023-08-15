@@ -7,7 +7,6 @@ app.get("/", (req, res) => {
     res.send("This is the homepage");
 })
 
-
 app.get('/weather', async (req, res) => {
     console.log("requesting weather");
     const city = req.query.city || 'Copenhagen';
