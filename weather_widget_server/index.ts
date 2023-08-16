@@ -20,8 +20,6 @@ app.get('/weather', cors(), async (req: Request, res: Response): Promise<void> =
     }
 });
 
-
-
 app.get("*", (req: Request, res: Response): void => {
     res.send("I don't know that path!");
 });

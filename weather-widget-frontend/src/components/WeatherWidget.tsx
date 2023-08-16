@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import WeatherMetrics from "../components/WeatherMetrics";
+import WeatherMetrics from "./WeatherMetrics";
 import '../utils.js'
 
 export default function WeatherWidget() {
