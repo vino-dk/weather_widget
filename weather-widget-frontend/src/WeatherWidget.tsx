@@ -3,12 +3,19 @@ import SearchBar from "./SeachBar";
 import './WeatherWidget.css'
 import './utils.js'
 
+interface WeatherData {
+    city: string;
+    temp: number;
+    hum: number;
+    wind: number;
+}
+
 export default function WeatherWidget() {
 
-    const [weatherData, setWeatherData] = useState({ city: "", temp: "", hum: "", wind: "" });
-    const [error, setError] = useState(false);
+    const [weatherData, setWeatherData] = useState<WeatherData>({ city: "", temp: 0, hum: 0, wind: 0 });
+    const [error, setError] = useState<Boolean>(false);
 
-    async function getCityWeather(city = 'Copenhagen') {
+    async function getCityWeather(city: string = 'Copenhagen') {
         setError(false);
         try{
             const res = await fetch(`http://localhost:3000/weather?city=${city}`)
@@ -55,7 +62,7 @@ export default function WeatherWidget() {
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td>
+                        <td colSpan={2}>
                             <SearchBar
                                 searchPlaceHolder={"cityname"}
                                 getSearchTerm={getCityWeather} />
