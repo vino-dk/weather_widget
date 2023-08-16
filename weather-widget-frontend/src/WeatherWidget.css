@@ -1,4 +1,4 @@
-
+/* Table styling borrowed from https://dev.to/dcodeyt/creating-beautiful-html-tables-with-css-428l */
 
 .WeatherWidget table {
     border-collapse: collapse;
@@ -39,4 +39,8 @@
 
 .WeatherWidget td{
     text-align: left;
+}
+
+.WeatherWidget p {
+    color: red;
 }

@@ -6,18 +6,24 @@ import './utils.js'
 export default function WeatherWidget() {
 
     const [weatherData, setWeatherData] = useState({ city: "", temp: "", hum: "", wind: "" });
+    const [error, setError] = useState(false);
 
     async function getCityWeather(city = 'Copenhagen') {
-        const res = await fetch(`http://localhost:3000/weather?city=${city}`)
-        const cityWeather = await res.json();
-        console.log(cityWeather);
-        setWeatherData(
-            {
-                city: cityWeather.name,
-                temp: Math.floor(cityWeather.main.temp - 273.15),
-                hum: cityWeather.main.humidity,
-                wind: cityWeather.wind.speed
-            })
+        setError(false);
+        try{
+            const res = await fetch(`http://localhost:3000/weather?city=${city}`)
+            const cityWeather = await res.json();
+            setWeatherData(
+                {
+                    city: cityWeather.name,
+                    temp: Math.floor(cityWeather.main.temp - 273.15),
+                    hum: cityWeather.main.humidity,
+                    wind: cityWeather.wind.speed
+                })
+        } catch(error){
+            setError(true);
+            console.log("Could not fetch data from end-point", error);
+        }
     }
 
     useEffect(() => {
@@ -57,8 +63,7 @@ export default function WeatherWidget() {
                     </tr>
                 </tfoot>
             </table>
-
-
+            {error && <p>Please enter a valid city</p>}
         </div>
     )
 }

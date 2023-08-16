@@ -15,7 +15,7 @@ app.get('/weather', cors(), async (req, res) => {
         res.send(weather.data);        
     } catch(err) {
         console.error('Error', err)
-        res.status(500).res.send("Could not fetch weather data", err);
+        res.status(404).send("Could not fetch weather data");
     }
 })
 
