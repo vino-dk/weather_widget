@@ -1,6 +1,5 @@
-const kelvinToCelcius = (K) => {
+export const kelvinToCelcius = (K) => {
     if(K){
         return K - 273,15;
     }
-    return
 }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import SearchBar from "./SeachBar";
 import './WeatherWidget.css'
-import './utils.js'
+import {kelvinToCelcius} from './utils.js'
 
 export default function WeatherWidget() {
 
@@ -17,7 +17,7 @@ export default function WeatherWidget() {
                 setWeatherData(
                     {
                         city: cityWeather.name,
-                        temp: Math.floor(cityWeather.main.temp - 273.15),
+                        temp: Math.floor(kelvinToCelcius(cityWeather.main.temp)),
                         hum: cityWeather.main.humidity,
                         wind: cityWeather.wind.speed
                     })
