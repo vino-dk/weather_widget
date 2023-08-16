@@ -9,20 +9,22 @@ export default function WeatherWidget() {
     const [error, setError] = useState(false);
 
     async function getCityWeather(city = 'Copenhagen') {
-        setError(false);
-        try{
-            const res = await fetch(`http://localhost:3000/weather?city=${city}`)
-            const cityWeather = await res.json();
-            setWeatherData(
-                {
-                    city: cityWeather.name,
-                    temp: Math.floor(cityWeather.main.temp - 273.15),
-                    hum: cityWeather.main.humidity,
-                    wind: cityWeather.wind.speed
-                })
-        } catch(error){
-            setError(true);
-            console.log("Could not fetch data from end-point", error);
+        if (city !== "") {
+            setError(false);
+            try {
+                const res = await fetch(`http://localhost:3000/weather?city=${city}`)
+                const cityWeather = await res.json();
+                setWeatherData(
+                    {
+                        city: cityWeather.name,
+                        temp: Math.floor(cityWeather.main.temp - 273.15),
+                        hum: cityWeather.main.humidity,
+                        wind: cityWeather.wind.speed
+                    })
+            } catch (error) {
+                setError(true);
+                console.log("Could not fetch data from end-point", error);
+            }
         }
     }
 
