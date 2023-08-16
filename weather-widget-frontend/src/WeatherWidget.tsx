@@ -1,30 +1,35 @@
 import { useEffect, useState } from "react"
 import SearchBar from "./SeachBar";
 import './WeatherWidget.css'
-import {kelvinToCelcius} from './utils.js'
+import './utils.js'
+
+interface WeatherData {
+    city: string;
+    temp: number;
+    hum: number;
+    wind: number;
+}
 
 export default function WeatherWidget() {
 
-    const [weatherData, setWeatherData] = useState({ city: "", temp: "", hum: "", wind: "" });
-    const [error, setError] = useState(false);
+    const [weatherData, setWeatherData] = useState<WeatherData>({ city: "", temp: 0, hum: 0, wind: 0 });
+    const [error, setError] = useState<Boolean>(false);
 
-    async function getCityWeather(city = 'Copenhagen') {
-        if (city !== "") {
-            setError(false);
-            try {
-                const res = await fetch(`http://localhost:3000/weather?city=${city}`)
-                const cityWeather = await res.json();
-                setWeatherData(
-                    {
-                        city: cityWeather.name,
-                        temp: Math.floor(kelvinToCelcius(cityWeather.main.temp)),
-                        hum: cityWeather.main.humidity,
-                        wind: cityWeather.wind.speed
-                    })
-            } catch (error) {
-                setError(true);
-                console.log("Could not fetch data from end-point", error);
-            }
+    async function getCityWeather(city: string = 'Copenhagen') {
+        setError(false);
+        try{
+            const res = await fetch(`http://localhost:3000/weather?city=${city}`)
+            const cityWeather = await res.json();
+            setWeatherData(
+                {
+                    city: cityWeather.name,
+                    temp: Math.floor(cityWeather.main.temp - 273.15),
+                    hum: cityWeather.main.humidity,
+                    wind: cityWeather.wind.speed
+                })
+        } catch(error){
+            setError(true);
+            console.log("Could not fetch data from end-point", error);
         }
     }
 
@@ -57,7 +62,7 @@ export default function WeatherWidget() {
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td>
+                        <td colSpan={2}>
                             <SearchBar
                                 searchPlaceHolder={"cityname"}
                                 getSearchTerm={getCityWeather} />

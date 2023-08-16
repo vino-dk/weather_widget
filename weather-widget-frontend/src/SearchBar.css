@@ -1,3 +1,9 @@
-.searchButton{
-    margin: 50px;
+.SearchBar{
+    display: flex;
+    justify-content: space-evenly;
+    
+}
+
+.SearchBar input{
+    width: 65%
 }
