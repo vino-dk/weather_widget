@@ -1,4 +1,7 @@
 ## Running the server
 
- * cd into "weather widget server"
- * Install Express with npm install express  
+ * Node.js must be installed 
+ * NPM is required
+ * TypeScript must be installed globalle
+ * Navigate to root of widget server project, run "npm install" in terminal
+ * Run the server by entering "nodemon index.ts"
