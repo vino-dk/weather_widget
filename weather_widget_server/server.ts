@@ -19,8 +19,8 @@ app.get('/weather', cors(), async (req: Request, res: Response): Promise<void> =
     try {
         const weather = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city},dk&appid=${API_KEY}`);
         const weatherData = weather.data; 
-        // res.send(weatherData);   
-        res.render('index', {weatherData});    
+        res.send(weatherData);   
+        // res.render('index', {weatherData});    
     } catch(err) {
         console.error('Error', err)
         res.status(404).send("Could not fetch weather data");
