@@ -22,14 +22,16 @@ const SearchBar: FunctionComponent<SearchBarProps> = ({ searchPlaceHolder, getSe
     }
 
     return (
-        <div className="SearchBar">
-            <input
-                type="text"
-                placeholder={searchPlaceHolder}
-                value={searchTerm}
-                onChange={handleChange}
-            ></input>
-            <button className="searchButton" onClick={handleSubmit}>Search</button>
+        <div>
+            <form action={`/weather?city=${searchTerm}`} className="SearchBar" method="get">
+                <input
+                    type="text"
+                    placeholder={searchPlaceHolder}
+                    value={searchTerm}
+                    onChange={handleChange}
+                ></input>
+                <button className="searchButton" onClick={handleSubmit}>Search</button>
+            </form>
         </div>
     )
 }
