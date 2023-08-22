@@ -25779,8 +25779,9 @@
 
   // client/src/main.tsx
   var import_jsx_runtime5 = __toESM(require_jsx_runtime());
-  import_client.default.createRoot(document.getElementById("root")).render(
-    // ! due to root always existing in a react app
+  var domNode = document.getElementById("root");
+  import_client.default.hydrateRoot(
+    domNode,
     /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(import_react3.default.StrictMode, { children: /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(BrowserRouter, { children: /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(App_default, {}) }) })
   );
 })();
