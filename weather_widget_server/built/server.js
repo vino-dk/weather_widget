@@ -24890,7 +24890,7 @@ var require_react_development = __commonJS({
           }
           return dispatcher.useContext(Context);
         }
-        function useState(initialState) {
+        function useState3(initialState) {
           var dispatcher = resolveDispatcher();
           return dispatcher.useState(initialState);
         }
@@ -24902,7 +24902,7 @@ var require_react_development = __commonJS({
           var dispatcher = resolveDispatcher();
           return dispatcher.useRef(initialValue);
         }
-        function useEffect(create, deps) {
+        function useEffect2(create, deps) {
           var dispatcher = resolveDispatcher();
           return dispatcher.useEffect(create, deps);
         }
@@ -25684,7 +25684,7 @@ var require_react_development = __commonJS({
         exports.useContext = useContext;
         exports.useDebugValue = useDebugValue;
         exports.useDeferredValue = useDeferredValue;
-        exports.useEffect = useEffect;
+        exports.useEffect = useEffect2;
         exports.useId = useId;
         exports.useImperativeHandle = useImperativeHandle;
         exports.useInsertionEffect = useInsertionEffect;
@@ -25692,7 +25692,7 @@ var require_react_development = __commonJS({
         exports.useMemo = useMemo;
         exports.useReducer = useReducer;
         exports.useRef = useRef;
-        exports.useState = useState;
+        exports.useState = useState3;
         exports.useSyncExternalStore = useSyncExternalStore;
         exports.useTransition = useTransition;
         exports.version = ReactVersion;
@@ -33068,7 +33068,7 @@ var require_react_dom_server_legacy_node_development = __commonJS({
         function basicStateReducer(state, action) {
           return typeof action === "function" ? action(state) : action;
         }
-        function useState(initialState) {
+        function useState3(initialState) {
           {
             currentHookNameInDev = "useState";
           }
@@ -33250,7 +33250,7 @@ var require_react_dom_server_legacy_node_development = __commonJS({
           useMemo,
           useReducer,
           useRef,
-          useState,
+          useState: useState3,
           useInsertionEffect: noop2,
           useLayoutEffect,
           useCallback,
@@ -38498,7 +38498,7 @@ var require_react_dom_server_node_development = __commonJS({
         function basicStateReducer(state, action) {
           return typeof action === "function" ? action(state) : action;
         }
-        function useState(initialState) {
+        function useState3(initialState) {
           {
             currentHookNameInDev = "useState";
           }
@@ -38680,7 +38680,7 @@ var require_react_dom_server_node_development = __commonJS({
           useMemo,
           useReducer,
           useRef,
-          useState,
+          useState: useState3,
           useInsertionEffect: noop2,
           useLayoutEffect,
           useCallback,
@@ -40875,11 +40875,11 @@ var require_react_jsx_runtime_development = __commonJS({
             return jsxWithValidation(type, props, key, false);
           }
         }
-        var jsx3 = jsxWithValidationDynamic;
-        var jsxs = jsxWithValidationStatic;
+        var jsx6 = jsxWithValidationDynamic;
+        var jsxs3 = jsxWithValidationStatic;
         exports.Fragment = REACT_FRAGMENT_TYPE;
-        exports.jsx = jsx3;
-        exports.jsxs = jsxs;
+        exports.jsx = jsx6;
+        exports.jsxs = jsxs3;
       })();
     }
   }
@@ -43837,18 +43837,128 @@ var {
 var import_cors = __toESM(require_lib3());
 var import_server = __toESM(require_server());
 
-// client/src/App.tsx
+// client/src/components/WeatherWidget.tsx
+var import_react2 = __toESM(require_react());
+
+// client/src/components/SeachBar.tsx
+var import_react = __toESM(require_react());
 var import_jsx_runtime = __toESM(require_jsx_runtime());
-var App = () => {
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_jsx_runtime.Fragment, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h1", { children: "Hello World!" }) });
+var SearchBar = ({ searchPlaceHolder, getSearchTerm }) => {
+  const [searchTerm, setSearchTerm] = (0, import_react.useState)("");
+  const handleChange = (evt) => {
+    setSearchTerm(evt.target.value);
+  };
+  const handleSubmit = () => {
+    getSearchTerm(searchTerm);
+    setSearchTerm("");
+  };
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "SearchBar", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+      "input",
+      {
+        type: "text",
+        placeholder: searchPlaceHolder,
+        value: searchTerm,
+        onChange: handleChange
+      }
+    ),
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { className: "searchButton", onClick: handleSubmit, children: "Search" })
+  ] });
 };
+var SeachBar_default = SearchBar;
+
+// client/src/components/WeatherMetrics.tsx
+var import_jsx_runtime2 = __toESM(require_jsx_runtime());
+var WeatherMetrics = ({ weatherData, getCityWeather, errorInvalidCity }) => {
+  return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "WeatherMetrics", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("table", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("tr", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("th", { children: [
+          "Weather in ",
+          weatherData.city
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("th", {})
+      ] }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("tbody", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("tr", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("td", { children: "Temperature:" }),
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("td", { children: [
+            weatherData.temp,
+            " \xB0C"
+          ] })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("tr", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("td", { children: "Humidity:" }),
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("td", { children: [
+            weatherData.hum,
+            " %"
+          ] })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("tr", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("td", { children: "Wind:" }),
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("td", { children: [
+            weatherData.wind,
+            " m/s"
+          ] })
+        ] })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("tfoot", { children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("tr", { children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("td", { colSpan: 2, children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
+        SeachBar_default,
+        {
+          searchPlaceHolder: "cityname",
+          getSearchTerm: getCityWeather
+        }
+      ) }) }) })
+    ] }),
+    errorInvalidCity && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { children: "Please enter a valid city" })
+  ] });
+};
+var WeatherMetrics_default = WeatherMetrics;
+
+// client/src/components/WeatherWidget.tsx
+var import_jsx_runtime3 = __toESM(require_jsx_runtime());
+function WeatherWidget() {
+  const [weatherData, setWeatherData] = (0, import_react2.useState)({ city: "", temp: 0, hum: 0, wind: 0 });
+  const [errorInvalidCity, setErrorInvalidCity] = (0, import_react2.useState)(false);
+  async function getCityWeather(city = "Copenhagen") {
+    if (city !== "") {
+      setErrorInvalidCity(false);
+      try {
+        const res = await fetch(`http://localhost:3000/weather?city=${city}`);
+        const cityWeather = await res.json();
+        setWeatherData(
+          {
+            city: cityWeather.name,
+            temp: Math.floor(cityWeather.main.temp - 273.15),
+            hum: cityWeather.main.humidity,
+            wind: cityWeather.wind.speed
+          }
+        );
+      } catch (error) {
+        setErrorInvalidCity(true);
+        console.log("Could not fetch data from end-point", error);
+      }
+    }
+  }
+  (0, import_react2.useEffect)(() => {
+    getCityWeather();
+  }, []);
+  return /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(import_jsx_runtime3.Fragment, { children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(WeatherMetrics_default, { weatherData, getCityWeather, errorInvalidCity }) });
+}
+
+// client/src/App.tsx
+var import_jsx_runtime4 = __toESM(require_jsx_runtime());
+function App() {
+  return /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(import_jsx_runtime4.Fragment, { children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(WeatherWidget, {}) });
+}
+var App_default = App;
 
 // server/src/server.tsx
-var import_jsx_runtime2 = __toESM(require_jsx_runtime());
+var import_jsx_runtime5 = __toESM(require_jsx_runtime());
 var API_KEY = "166d00e26d3ff2c6149e89feccc5c59a";
 var app = (0, import_express.default)();
 app.get("/", (req, res) => {
-  const app2 = (0, import_server.renderToString)(/* @__PURE__ */ (0, import_jsx_runtime2.jsx)(App, {}));
+  const app2 = (0, import_server.renderToString)(/* @__PURE__ */ (0, import_jsx_runtime5.jsx)(App_default, {}));
   res.send(app2);
 });
 app.get("/weather", (0, import_cors.default)(), async (req, res) => {

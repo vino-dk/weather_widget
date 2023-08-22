@@ -1,10 +1,13 @@
-// App.tsx
-import React from "react";
+import './App.css'
+import WeatherWidget from './components/WeatherWidget'
+import React from 'react'
 
-export const App = () => {
-    return (
-        <>
-            <h1>Hello World!</h1>
-        </>
-    )
+function App() {
+  return (
+    <>
+      <WeatherWidget />
+    </>
+  )
 }
+
+export default App

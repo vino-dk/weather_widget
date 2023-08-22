@@ -1,8 +1,8 @@
 import express, { Application, Request, Response } from "express";
 import axios from "axios";
 import cors from "cors";
-import {renderToString} from 'react-dom/server'
-import { App } from '../../client/src/App'
+import { renderToString } from 'react-dom/server'
+import App from '../../client/src/App'
 import React from "react";
 
 const API_KEY: string = "166d00e26d3ff2c6149e89feccc5c59a";
