@@ -11,7 +11,12 @@ const app: Application = express();
 
 app.get("/", (req: Request, res: Response): void => {
     const app = renderToString(<App />)
-    res.send(app);
+    res.send(`<html>
+        <body>
+            <div id="root">${app}</div>
+        </body>
+    </html>`);
+    // res.send(app);
 });
 
 app.get('/weather', cors(), async (req: Request, res: Response): Promise<void> => {
@@ -20,6 +25,7 @@ app.get('/weather', cors(), async (req: Request, res: Response): Promise<void> =
         const weather = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city},dk&appid=${API_KEY}`);
         const weatherData = weather.data;
         res.send(weatherData);
+        console.log(weatherData);
         // res.render('index', {weatherData});    
     } catch (err) {
         console.error('Error', err)

@@ -12,26 +12,23 @@ const SearchBar: FunctionComponent<SearchBarProps> = ({ searchPlaceHolder, getSe
     // const navigate = useNavigate();
     const [searchTerm, setSearchTerm] = useState("");
 
-    const handleChange = (evt: ChangeEvent<HTMLInputElement>) => {
-        setSearchTerm(evt.target.value)
-    }
-
-    const handleSubmit = () => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         getSearchTerm(searchTerm);
         // navigate(`/weather?city=${searchTerm}`);
         setSearchTerm("");
+        e.preventDefault();
     }
 
     return (
-        <div className="SearchBar">
+        <form action={`/weather?city=${searchTerm}`} onSubmit={handleSubmit} className="SearchBar" method="get">
             <input
                 type="text"
                 placeholder={searchPlaceHolder}
                 value={searchTerm}
-                onChange={handleChange}
+                onChange={event => setSearchTerm(event.target.value)}
             ></input>
-            <button className="searchButton" onClick={handleSubmit}>Search</button>
-        </div>
+            <button className="searchButton" type="submit">Search</button>
+        </form>
     )
 }
 

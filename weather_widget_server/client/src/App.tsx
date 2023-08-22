@@ -1,13 +1,12 @@
 import './App.css'
 import WeatherWidget from './components/WeatherWidget'
 import React from 'react'
+import './index.css'
 
-function App() {
+export default function App() {
   return (
     <>
       <WeatherWidget />
     </>
   )
 }
-
-export default App

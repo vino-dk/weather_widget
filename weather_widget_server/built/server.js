@@ -43845,24 +43845,22 @@ var import_react = __toESM(require_react());
 var import_jsx_runtime = __toESM(require_jsx_runtime());
 var SearchBar = ({ searchPlaceHolder, getSearchTerm }) => {
   const [searchTerm, setSearchTerm] = (0, import_react.useState)("");
-  const handleChange = (evt) => {
-    setSearchTerm(evt.target.value);
-  };
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
     getSearchTerm(searchTerm);
     setSearchTerm("");
+    e.preventDefault();
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "SearchBar", children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("form", { action: `/weather?city=${searchTerm}`, onSubmit: handleSubmit, className: "SearchBar", method: "get", children: [
     /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
       "input",
       {
         type: "text",
         placeholder: searchPlaceHolder,
         value: searchTerm,
-        onChange: handleChange
+        onChange: (event) => setSearchTerm(event.target.value)
       }
     ),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { className: "searchButton", onClick: handleSubmit, children: "Search" })
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { className: "searchButton", type: "submit", children: "Search" })
   ] });
 };
 var SeachBar_default = SearchBar;
@@ -43951,15 +43949,18 @@ var import_jsx_runtime4 = __toESM(require_jsx_runtime());
 function App() {
   return /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(import_jsx_runtime4.Fragment, { children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(WeatherWidget, {}) });
 }
-var App_default = App;
 
 // server/src/server.tsx
 var import_jsx_runtime5 = __toESM(require_jsx_runtime());
 var API_KEY = "166d00e26d3ff2c6149e89feccc5c59a";
 var app = (0, import_express.default)();
 app.get("/", (req, res) => {
-  const app2 = (0, import_server.renderToString)(/* @__PURE__ */ (0, import_jsx_runtime5.jsx)(App_default, {}));
-  res.send(app2);
+  const app2 = (0, import_server.renderToString)(/* @__PURE__ */ (0, import_jsx_runtime5.jsx)(App, {}));
+  res.send(`<html>
+        <body>
+            <div id="root">${app2}</div>
+        </body>
+    </html>`);
 });
 app.get("/weather", (0, import_cors.default)(), async (req, res) => {
   const city = req.query.city || "Copenhagen";
@@ -43967,6 +43968,7 @@ app.get("/weather", (0, import_cors.default)(), async (req, res) => {
     const weather = await axios_default.get(`https://api.openweathermap.org/data/2.5/weather?q=${city},dk&appid=${API_KEY}`);
     const weatherData = weather.data;
     res.send(weatherData);
+    console.log(weatherData);
   } catch (err) {
     console.error("Error", err);
     res.status(404).send("Could not fetch weather data");

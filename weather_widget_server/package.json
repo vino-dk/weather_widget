@@ -6,8 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node built/server.js",
-    "client:build": "esbuild client/src/main.tsx --bundle --loader:.js=jsx --outfile=built/app.js",
-    "server:build": "esbuild server/src/server.tsx --bundle --loader:.js=jsx --outfile=built/server.js --platform=node"
+    "client:build": "esbuild client/src/App.tsx --bundle --loader:.js=jsx --outfile=built/app.js",
+    "server:build": "esbuild server/src/server.tsx --bundle --loader:.js=jsx --outfile=built/server.js --platform=node",
+    "css:build": "esbuild --bundle client/src/index.css --outfile=built/styles.css"
   },
   "author": "Vino Iruthayam",
   "license": "ISC",
@@ -17,7 +18,8 @@
     "express": "^4.18.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.15.0"
+    "react-router-dom": "^6.15.0",
+    "styled-components": "^6.0.7"
   },
   "devDependencies": {
     "@types/cors": "^2.8.13",
