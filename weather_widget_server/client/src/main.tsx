@@ -4,7 +4,10 @@ import App from './App'
 import './index.css'
 import { BrowserRouter as Router } from 'react-router-dom';
 
-ReactDOM.createRoot(document.getElementById('root')!).render( // ! due to root always existing in a react app
+const domNode = document.getElementById('root')!; // ! due to root always existing in a react app
+const root = ReactDOM.createRoot(domNode) 
+
+root.render(
   <React.StrictMode>
     <Router>
       <App />
