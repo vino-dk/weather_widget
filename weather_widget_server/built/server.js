@@ -43947,7 +43947,7 @@ function WeatherWidget() {
 // client/src/App.tsx
 var import_jsx_runtime4 = __toESM(require_jsx_runtime());
 function App() {
-  return /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(import_jsx_runtime4.Fragment, { children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(WeatherWidget, {}) });
+  return /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(WeatherWidget, {});
 }
 
 // server/src/server.tsx
