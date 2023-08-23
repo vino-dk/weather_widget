@@ -1,9 +1,12 @@
 import express, { Application, Request, Response } from "express";
 import axios from "axios";
 import cors from "cors";
-import React from "react";
+import React from "react"
 import { renderToString } from 'react-dom/server'
-import App from '../../client/src/App'
+import App from '../client/src/App'
+import fs from 'fs'
+import path from 'path'
+
 
 const API_KEY: string = "166d00e26d3ff2c6149e89feccc5c59a";
 const app: Application = express();
@@ -12,19 +15,29 @@ const pageTemplate = `<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta
-      name="description"
-      content="Weather result"
-    />
     <title>Weather App</title>
-    <script src="app.js" async defer></script>
+    <link href="built/app.css" rel="stylesheet">
+    
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <script src="built/app.js"></script>
   </body>
 </html>
 `;
+
+app.use('^/$', (req, res, next) => {
+    fs.readFile(path.resolve('./built/index.html'), 'utf-8', (err, data) => {
+        if (err) {
+            console.log(err);
+            return res.status(500).send("some error");
+        }
+        return res.send(data.replace(
+            `<div id="root"></div>`,
+            `<div id="root">${renderToString(<App />)}</div>`
+        ))
+    })
+})
 
 const renderPage = (reactComponent) => {
     const renderedComponent = renderToString(reactComponent);
@@ -42,7 +55,7 @@ const renderPage = (reactComponent) => {
 // });
 
 app.get("/*", (req: Request, res: Response) => res.send(
-    renderPage(<App/>),
+    renderPage(<App />),
 ));
 
 app.get('/weather', cors(), async (req: Request, res: Response): Promise<void> => {
@@ -65,8 +78,10 @@ app.get("*", (req: Request, res: Response): void => {
     res.send("Unknown path!");
 });
 
-app.use(express.static("./built"));
+// app.use(express.static("./built"));
+app.use(express.static(path.resolve(__dirname, '..', "built")));
 
 app.listen(3000, (): void => {
     console.log("listening on port 3000!");
 });
+
