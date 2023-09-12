@@ -1,14 +1,9 @@
 import express, { Application, Request, Response } from "express";
 import axios from "axios";
 import cors from "cors";
-// import react from 'react'
-import path from 'path'
 
 const API_KEY: string = "56f7e7fb66556ac07611d68de8a4a6c3";
 const app: Application = express();
-
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, '/views'));
 
 app.get("/", (req: Request, res: Response): void => {
     res.send("This is the homepage");
