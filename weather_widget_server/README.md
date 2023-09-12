@@ -1,7 +1,10 @@
 ## Running the server
 
- * Node.js must be installed 
- * NPM is required
- * TypeScript must be installed globalle
+### Required packages and libraries
+ * Node.js 
+ * NPM 
+ * Global TypeScript
+
+### Running the app 
  * Navigate to root of widget server project, run "npm install" in terminal
- * Run the server by entering "nodemon index.ts"
+ * Run the server by entering "nodemon server.ts"

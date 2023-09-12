@@ -22,8 +22,6 @@ app.get('/weather', cors(), async (req: Request, res: Response): Promise<void> =
     }
 });
 
-// Add a post request for the submit of a city in the ejs form to render a new city
-
 app.get("*", (req: Request, res: Response): void => {
     res.send("I don't know that path!");
 });
