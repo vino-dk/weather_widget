@@ -2,7 +2,7 @@
 
 .WeatherMetrics table {
     border-collapse: collapse;
-    margin: 25px 0;
+    margin: 25px 20px;
     font-size: 0.9em;
     font-family: sans-serif;
     min-width: 400px;
