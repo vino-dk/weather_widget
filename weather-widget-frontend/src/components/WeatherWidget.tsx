@@ -1,13 +1,17 @@
-import { useEffect, useState } from "react"
+import { FunctionComponent, useEffect, useState } from "react"
 import WeatherMetrics from "./WeatherMetrics";
 import '../utils.js'
 
-export default function WeatherWidget() {
+interface CityProp {
+    city: string
+}
+
+const WeatherWidget: FunctionComponent<CityProp> = ({city = "Copenhagen"}) => {
 
     const [weatherData, setWeatherData] = useState({ city: "", temp: 0, hum: 0, wind: 0 });
     const [errorInvalidCity, setErrorInvalidCity] = useState<boolean>(false);
 
-    async function getCityWeather(city: string = 'Copenhagen') {
+    async function getCityWeather(city: string) {
         if (city !== "") {
             setErrorInvalidCity(false);
             try {
@@ -27,9 +31,10 @@ export default function WeatherWidget() {
         }
     }
 
+    // Get city weather on first render
     useEffect(() => {
-        getCityWeather();
-    }, [])
+        getCityWeather(city);
+    }, [city])
 
     return (
         <>
@@ -37,3 +42,5 @@ export default function WeatherWidget() {
         </>
     )
 }
+
+export default WeatherWidget

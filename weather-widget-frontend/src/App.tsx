@@ -4,7 +4,8 @@ import WeatherWidget from './components/WeatherWidget'
 function App() {
   return (
     <>
-      <WeatherWidget />
+      <WeatherWidget city="Copenhagen"/>
+      <WeatherWidget city="Odense"/>
     </>
   )
 }
