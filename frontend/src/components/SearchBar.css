@@ -1,9 +1,9 @@
-.SearchBar{
+.SearchBar form{
     display: flex;
     justify-content: space-evenly;
     
 }
 
-.SearchBar input{
+.SearchBar form input{
     width: 65%
 }
