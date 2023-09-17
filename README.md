@@ -12,8 +12,9 @@ git clone https://github.com/vino-dk/weather_widget.git
 ```
 2. Navigate to the project directory in the terminal/command prompt.
 3. Run `npm install` to install the dependencies and devDependencies of the project.
-4. Once all the dependencies are installed, start the applications
-5. In each folder, theres more details on how to run the apps. 
+4. Once all the dependencies are installed, start the applications. 
+5. In the frontend, run "npm run dev" and open the URL.
+6. In the backend folder, run "nodemon server.ts" to start the express server. 
 
 ## Future work
  * Users can share the widget for any other Danish city by updating the URL parameters.
