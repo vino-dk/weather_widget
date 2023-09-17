@@ -5,7 +5,8 @@ type WeatherData = {
     city: string;
     temp: number;
     hum: number,
-    wind: number
+    wind: number,
+    icon: any
 }
 
 type WeatherMetricsProps = {
@@ -21,7 +22,7 @@ const WeatherMetrics:React.FC<WeatherMetricsProps> = ({weatherData, getCityWeath
                 <thead>
                     <tr>
                         <th>Weather in {weatherData.city}</th>
-                        <th></th>
+                        <th><img src={weatherData.icon} alt="weather"/></th>
                     </tr>
                 </thead>
                 <tbody>
