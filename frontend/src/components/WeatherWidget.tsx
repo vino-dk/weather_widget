@@ -6,7 +6,7 @@ interface CityProp {
     city: string
 }
 
-const WeatherWidget: FunctionComponent<CityProp> = ({city = "Copenhagen"}) => {
+const WeatherWidget: FunctionComponent<CityProp> = ({ city = "Copenhagen" }) => {
 
     const [weatherData, setWeatherData] = useState({ city: "", temp: 0, hum: 0, wind: 0, icon: "" });
     const [errorInvalidCity, setErrorInvalidCity] = useState<boolean>(false);
@@ -15,20 +15,20 @@ const WeatherWidget: FunctionComponent<CityProp> = ({city = "Copenhagen"}) => {
         const icon_res = await fetch(`https://openweathermap.org/img/wn/${icon_id}@2x.png`)
         const icon_blob = await icon_res.blob();
         const icon_URL = URL.createObjectURL(icon_blob)
-        return icon_URL
-      };
+        return icon_URL 
+    };
 
     async function getCityWeather(city: string) {
         if (city !== "") {
             setErrorInvalidCity(false);
             try {
                 const res = await fetch(`http://localhost:3000/weather?city=${city}`)
-                if(!res.ok) throw Error('failed to fetch weather data');
+                if (!res.ok) throw Error('failed to fetch weather data');
                 const cityWeather = await res.json();
 
                 const icon_id = cityWeather.weather[0]['icon'];
                 const icon_URL = await fetchIcon(icon_id);
-                
+
                 setWeatherData(
                     {
                         city: cityWeather.name,
