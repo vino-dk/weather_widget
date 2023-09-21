@@ -1,6 +1,7 @@
 import { ChangeEvent, FunctionComponent, useState } from "react";
 import { useNavigate } from "react-router-dom"
 import './SearchBar.css'
+import React from "react";
 
 interface SearchBarProps {
     searchPlaceHolder: string;

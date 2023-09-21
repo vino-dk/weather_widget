@@ -1,6 +1,7 @@
 import { FunctionComponent, useEffect, useState } from "react"
 import WeatherMetrics from "./WeatherMetrics";
 import '../utils.js'
+import React from "react";
 
 interface CityProp {
     city: string
