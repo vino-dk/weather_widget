@@ -1,5 +1,6 @@
 import './WeatherMetrics.css'
 import SearchBar from "./SeachBar";
+import React from 'react';
 
 type WeatherData = {
     city: string;
