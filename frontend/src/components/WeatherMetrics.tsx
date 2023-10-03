@@ -1,6 +1,5 @@
 import './WeatherMetrics.css'
 import SearchBar from "./SeachBar";
-import React from 'react';
 
 type WeatherData = {
     city: string;
@@ -18,11 +17,11 @@ type WeatherMetricsProps = {
   
 const WeatherMetrics:React.FC<WeatherMetricsProps> = ({weatherData, getCityWeather, errorInvalidCity}) => {
     return(
-        <div className="WeatherMetrics">
+        <div className="WeatherMetrics transition duration-300 ease-in-out">
             <table>
                 <thead>
                     <tr>
-                        <th>Weather in {weatherData.city}</th>
+                        <th>{weatherData.city}</th>
                         <th><img src={weatherData.icon} alt="weather"/></th>
                     </tr>
                 </thead>

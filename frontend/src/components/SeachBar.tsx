@@ -27,6 +27,7 @@ const SearchBar: FunctionComponent<SearchBarProps> = ({ searchPlaceHolder, getSe
         <div className="SearchBar">
             <form action="" method="get">
                 <input
+                    className="align-middle mt-1 border border-gray-200"
                     type="text"
                     placeholder={searchPlaceHolder}
                     value={searchTerm}
