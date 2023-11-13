@@ -4,8 +4,8 @@ import SearchBar from "./SeachBar";
 type WeatherData = {
     city: string;
     temp: number;
-    hum: number,
-    wind: number,
+    hum: number;
+    wind: number;
     icon: any
 }
 
