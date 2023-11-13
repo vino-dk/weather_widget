@@ -1,4 +1,5 @@
 import { FunctionComponent } from "react";
+import kelvinToCelcius from '../utils/utils';
 
 type WeatherData = {
     main: {
@@ -25,18 +26,18 @@ const ListView = ({ weather_data }: ListViewProps) => {
                     <th></th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>Temperature:</td>
-                    <td>{weather_data.main.temp} °C</td>
+            <tbody className="divide-y">
+                <tr className="even:bg-gray-100  odd:bg-white">
+                    <td className="px-3 py-2">Temperature:</td>
+                    <td className="pl-3">{kelvinToCelcius(weather_data.main.temp)} °C</td>
                 </tr>
-                <tr>
-                    <td>Humidity:</td>
-                    <td>{weather_data.main.humidity} %</td>
+                <tr className="even:bg-gray-100 odd:bg-white">
+                    <td className="px-3" >Humidity:</td>
+                    <td className="pl-3 py-2" >{weather_data.main.humidity} %</td>
                 </tr>
-                <tr>
-                    <td>Wind:</td>
-                    <td>{weather_data.wind.speed} m/s</td>
+                <tr className="even:bg-gray-100 odd:bg-white">
+                    <td className="px-3" >Wind:</td>
+                    <td className="pl-3 py-2" >{weather_data.wind.speed} m/s {weather_data.wind.deg}°</td>
                 </tr>
             </tbody>
         </table>
